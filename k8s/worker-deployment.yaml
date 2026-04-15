@@ -19,6 +19,7 @@ spec:
       containers:
         - name: worker
           image: adityas23100/aitask-worker:latest
+          imagePullPolicy: IfNotPresent
           envFrom:
             - configMapRef:
                 name: aitask-config

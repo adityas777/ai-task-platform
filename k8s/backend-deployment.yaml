@@ -19,6 +19,7 @@ spec:
       containers:
         - name: backend
           image: adityas23100/aitask-backend:latest
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 5000
           envFrom:
