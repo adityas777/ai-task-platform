@@ -18,7 +18,7 @@ spec:
         runAsUser: 1001
       containers:
         - name: backend
-          image: adityas777/aitask-backend:latest
+          image: adityas23100/aitask-backend:latest
           ports:
             - containerPort: 5000
           envFrom:
