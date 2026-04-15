@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/YOUR_USERNAME/ai-task-platform.git  # replace this
+    repoURL: https://github.com/adityas777/ai-task-platform.git
     targetRevision: main
     path: k8s
   destination:
