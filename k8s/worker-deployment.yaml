@@ -18,7 +18,7 @@ spec:
         runAsUser: 1001
       containers:
         - name: worker
-          image: your-dockerhub/aitask-worker:latest
+          image: adityas777/aitask-worker:latest
           envFrom:
             - configMapRef:
                 name: aitask-config
