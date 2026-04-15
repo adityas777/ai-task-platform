@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: worker
+  namespace: aitask
+spec:
+  replicas: 3   # Scale this up for higher throughput
+  selector:
+    matchLabels:
+      app: worker
+  template:
+    metadata:
+      labels:
+        app: worker
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1001
+      containers:
+        - name: worker
+          image: your-dockerhub/aitask-worker:latest
+          envFrom:
+            - configMapRef:
+                name: aitask-config
+            - secretRef:
+                name: aitask-secret
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "64Mi"
+            limits:
+              cpu: "500m"
+              memory: "256Mi"
+          livenessProbe:
+            exec:
+              command: ["python", "-c", "import redis; r=redis.Redis(host='redis-service'); r.ping()"]
+            initialDelaySeconds: 15
+            periodSeconds: 30
+          readinessProbe:
+            exec:
+              command: ["python", "-c", "import redis; r=redis.Redis(host='redis-service'); r.ping()"]
+            initialDelaySeconds: 5
+            periodSeconds: 10
