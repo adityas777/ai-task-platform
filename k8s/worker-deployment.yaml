@@ -32,13 +32,3 @@ spec:
             limits:
               cpu: "500m"
               memory: "256Mi"
-          livenessProbe:
-            exec:
-              command: ["python", "-c", "import redis; r=redis.Redis(host='redis-service'); r.ping()"]
-            initialDelaySeconds: 15
-            periodSeconds: 30
-          readinessProbe:
-            exec:
-              command: ["python", "-c", "import redis; r=redis.Redis(host='redis-service'); r.ping()"]
-            initialDelaySeconds: 5
-            periodSeconds: 10
